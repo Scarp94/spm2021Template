@@ -2,6 +2,8 @@ package pros.unicam.spm2021.practice.Selenium;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
+import org.junit.jupiter.api.Tag;
+
 import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +14,7 @@ public class FirstTest {
   private StringBuffer verificationErrors = new StringBuffer();
   JavascriptExecutor js;
   @Before
+  @Tag("Acceptance")
   public void setUp() throws Exception {
     System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
     
@@ -24,6 +27,7 @@ public class FirstTest {
   }
 
   @Test
+  @Tag("Acceptance")
   public void testFirst() throws Exception {
     driver.get("http://pros.unicam.it/");
     driver.findElement(By.xpath("//button[@onclick='alxMediaMenu.toggleItem(this)']")).click();
@@ -32,7 +36,16 @@ public class FirstTest {
     driver.findElement(By.linkText("Projects & Collaborations")).click();
   }
 
+  @Test
+  @Tag("Acceptance")
+  public void testSecond() throws Exception {
+    driver.get("http://pros.unicam.it/");
+    driver.findElement(By.xpath("//button[@onclick='alxMediaMenu.toggleItem(this)']")).click();
+    driver.findElement(By.linkText("BPMN Metrics Extractor")).click();
+  }
+
   @After
+  @Tag("Acceptance")
   public void tearDown() throws Exception {
     driver.quit();
     String verificationErrorString = verificationErrors.toString();
